@@ -1,0 +1,16 @@
+'''
+desc: my first function from the lessons.
+date: oct 4th 2020
+purp: to add two numbers
+'''
+def add_function(num1,num2):
+    return num1+num2
+
+
+'''
+desc: to print an inputted name
+date: oct 4th 2020
+purp: to print a name && show that variable can be assigned in the function definition
+'''
+def say_hello(name='default'):
+    print(f'hello {name}')
