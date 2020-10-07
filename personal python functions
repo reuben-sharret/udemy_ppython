@@ -14,3 +14,74 @@ purp: to print a name && show that variable can be assigned in the function defi
 '''
 def say_hello(name='default'):
     print(f'hello {name}')
+
+#return even numbers is inside list
+def check_even_list(num_list):
+    #placeholders
+    even_numbers = []
+    
+    for number in num_list:
+        if number % 2 == 0:
+            even_numbers.append(number)
+        else:
+            pass
+    return even_numbers
+
+#to see who has the most hours worked
+def employee_check(work_hours):
+    #placeholders
+    current_max = 0
+    employee_of_month = ''
+    
+    for employee,hours in work_hours:
+        if hours > current_max:
+            current_max = hours
+            employee_of_month = employee
+        else:
+            pass
+    
+    return (employee_of_month,current_max)
+    
+ # my first game!! 3 CARD MONTE - note - each function are seperate only to be called in the final function 'check guess'
+ 
+ # import shuffle function. this rearranges intem within a list. doesn't return anything
+ from random import shuffle
+ 
+ #function to randomize list and return new list
+ def shuffle_list(mylist):
+    shuffle(mylist)
+    return mylist
+ 
+ #function to prompt the user for a guess limited to the number of cups
+ def player_guess():
+    guess = ''
+    while guess not in ['0','1','2']:
+        guess = input("Pick a number: (0, 1, or 2) ")
+    return int(guess)
+ 
+ #checks the guess against the actual value in the shuffled list.
+ def check_guess(mylist,guess):
+    if mylist[guess] == 'o':
+        print ('correct!!! you win!!')
+    else:
+        print ('wrong guess')
+        print (mylist)
+        
+ # END OF GAME
+ 
+ #ARGS and KWARGS examples
+ def arg_func(*args):
+    #return sum(args)*.05
+    print(args)
+    
+ def kwargs_func(**kwargs):
+    print(kwargs)
+    if 'fruit' in kwargs:
+        print('my fruit of choice is {}'.format(kwargs['fruit']))
+    else:
+        print('no fruit here')
+        
+  def arg_kwags_func(*args,**kwargs):
+    print(args)
+    print(kwargs)
+    print('i would like {} {}'.format(args[0],kwargs['food']))
