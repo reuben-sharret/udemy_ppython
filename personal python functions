@@ -85,3 +85,89 @@ def employee_check(work_hours):
     print(args)
     print(kwargs)
     print('i would like {} {}'.format(args[0],kwargs['food']))
+
+def lesser_of_two_evens(a,b):
+    if a%2 == 0 and b%2 == 0: 
+        if a < b:
+            return a
+        else:
+            return b
+    else:
+        if a < b:
+            return b
+        else:
+            return a
+            
+def first_letter_match(text):
+    newst = text.split()
+    return newst[0][0] == newst[1][0]
+    
+def makes_twenty(n1,n2):
+    if n1==20 or n2==20 or n1+n2==20:
+        return True
+    return False
+    
+def old_macdonald(name):
+    if len(name)>3:
+        return name[0].capitalize() + name[1:3] +name[3].capitalize() +name[4:]
+    if 0<len(name)<4:
+        return name[0].capitalize() + name[1:]
+        
+def master_yoda(text):
+    sen = text.split()
+    print(sen[::-1])
+    
+def has_33(nums):
+    for x in range(len(nums)-1):
+        if nums[x] == 3 and nums[x+1] == 3:
+            return True
+    return False
+
+def paper_doll(text):
+    ans=''
+    for x in text:
+        ans=ans+x*3
+    print(ans)
+
+def blackjack(a,b,c):
+    if a+b+c<=21:
+        return a+b+c
+    elif (a+b+c>21) and (a==11 or b==11 or c==11):
+        return (a+b+c-10)
+    elif a+b+c>21:
+        return 'BUST'
+        
+#to remove elements from a string between vlaues of 6 & 9        
+def summer_69(arr):
+    start=0
+    end=0
+    #find 6
+    if 6 in arr:
+        for x in range(len(arr)):
+            if arr[x]==6:
+                start = x
+        print(start)
+
+    #find 9
+    if 9 in arr:
+        for t in range(len(arr)):
+            if arr[t]==9:
+                end = t
+        print(end)
+
+    #remove numbers
+    y=start
+    #print(abs(start-end)+1)
+    if start<end:
+        while y !=end-1:
+            print(str(y) + '-' + str(sum(arr)))
+            arr.pop(y)
+            #y+=1
+            print(str(y) + '-' + str(sum(arr)))
+
+    #sum numbers
+    return sum(arr)
+
+
+
+
