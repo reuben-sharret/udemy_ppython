@@ -98,14 +98,21 @@ def lesser_of_two_evens(a,b):
         else:
             return a
             
+def MinMax_of_two_evens(a,b):
+   if a%2 == 0 and b%2 == 0:            
+        return min(a,b)
+   else:
+        return max(a,b)
+        
 def first_letter_match(text):
-    newst = text.split()
+    newst = text.lower().split()
     return newst[0][0] == newst[1][0]
     
 def makes_twenty(n1,n2):
     if n1==20 or n2==20 or n1+n2==20:
         return True
     return False
+    #return n1==20 or n2==20 or n1+n2==20
     
 def old_macdonald(name):
     if len(name)>3:
@@ -133,11 +140,12 @@ def blackjack(a,b,c):
     if a+b+c<=21:
         return a+b+c
     elif (a+b+c>21) and (a==11 or b==11 or c==11):
+    #elif 11 in [a,b,c] and sum([a,b,c]) <=31:
         return (a+b+c-10)
     elif a+b+c>21:
         return 'BUST'
         
-#to remove elements from a string between vlaues of 6 & 9        
+#to remove elements from a string between vlaues of 6 & 9 
 def summer_69(arr):
     start=0
     end=0
@@ -146,28 +154,110 @@ def summer_69(arr):
         for x in range(len(arr)):
             if arr[x]==6:
                 start = x
-        print(start)
 
     #find 9
     if 9 in arr:
         for t in range(len(arr)):
             if arr[t]==9:
                 end = t
-        print(end)
 
     #remove numbers
-    y=start
-    #print(abs(start-end)+1)
     if start<end:
-        while y !=end-1:
-            print(str(y) + '-' + str(sum(arr)))
-            arr.pop(y)
-            #y+=1
-            print(str(y) + '-' + str(sum(arr)))
-
+        while start !=end:
+            arr.pop(start)
+            end-=1
+            
+    if start == end and start != 0:
+        arr.pop(start)
+        
     #sum numbers
     return sum(arr)
+    
+def summer_69_again(arr):
+    total = 0
+    add = True
+    
+    for num in arr:
+        while add:
+            if num != 6:
+                total+=num
+                break
+            else:
+                add = False
+                
+        while not add:
+            if num != 9:
+                break
+            else:
+                add = true
+                break
+    return Total
+    
+def spy_game(nums):
+    seven_check = [0,0,0]
+    count=0
+
+    for x in range(len(nums)):
+        if nums[x] == 0:
+            #print(str(nums[x]) + '-' + str(x) + '-' + str(count))
+            seven_check[count] = nums[x]
+            count+=1
+        if nums[x] == 7:
+            #print(str(nums[x]) + '-' + str(x) + '-' + str(count))
+            seven_check[count] = nums[x]
+            count+=1
+
+    return seven_check == [0,0,7]:
 
 
-
-
+def spy_game2(nums):
+    code [0,0,7]
+    
+    for num in nums:
+        if num == code[0]:
+            code.pop(0)
+            
+    return len(code) == 0
+    
+ def count_primes(num):
+    
+    if num <2:
+        return 0
+    
+    #2 or greater
+    #store primes
+    primes = [2]
+    #to count up to input
+    x=3
+    
+    #x is going through every number up to input
+    while x<=num:
+        #check if x is prime
+        for y in range (3,x,2):
+            if x%y == 0:
+                x+=2
+                break
+        else:
+            primes.append(x)
+            x+=2
+    print(primes)
+    return len(primes)
+    
+ def multiples (num):
+    multiples = [0]
+    
+    for x in range(num):
+        if x%3 == 0 or x%5 == 0:
+            multiples.append(x)
+            
+    print (multiples)
+    return sum(multiples)
+    
+ def fibonaci_sum(num):
+    multiples = [0,1]
+    
+    for x in range(num):
+        multiples.append(multiples[x]+multiples[x+1])
+            
+    print (multiples)
+    return sum(multiples)
