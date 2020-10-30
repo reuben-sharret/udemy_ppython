@@ -1,7 +1,7 @@
 ##### TIC-TAC-TOE #####################
 ## This is version 1.0  of the game ###
 ## The game works but needs editing ###
-## 
+## update 1 - fix issues related to tun and player not matching, choosing markers, ending the game
 
 def display_board(board):
     #clear_output()
@@ -102,50 +102,70 @@ def replay():
 from IPython.display import clear_output
 
 print('Welcome to Tic Tac Toe!')
-game_on = True
-while True:
+    
+while not play_game.upper() == 'Y' or play_game.upper() == 'N':
+    play_game = input('ready to play? Y or N? ')
+    if choice not in ['X','O','x','o']:
+        print("Sorry, but you did not choose a valid selection (X,O)")
+
+    if choice not in ['X','O','x','o']:
+        print("Sorry, but you did not choose a valid selection (X,O)")
+
+
+if play_game.upper() == 'Y':
+    game_on = True
+else:
+    game_on = False
+
+while game_on:
     # Set the game up here
 
     game_board = ['#',' ',' ',' ',' ',' ',' ',' ',' ',' ']
     display_board(game_board)
+    
     (player1_marker,player2_marker) = player_input()    
-    choose_first()
     print(f'player1 is {player1_marker}')
     print(f'player2 is {player2_marker}')
+    turn = choose_first()
+    print(f'{turn} gets to go first')
     
     while game_on:
     #Player 1 Turn
-        #check if board is full before selecting position
-        if full_board_check(game_board)  == True:
-            print("The Board is full. A TIE!!")
-            break
-        else:
-            position = player_choice(game_board)
-            place_marker(game_board, player1_marker, position)
-            display_board(game_board)
+        if turn == 'player 1':
+            print(f'It is your turn {turn}')
+            #check if board is full before selecting position
+            if full_board_check(game_board)  == True:
+                print("The Board is full. A TIE!!")
+                break
+            else:
+                position = player_choice(game_board)
+                place_marker(game_board, player1_marker, position)
+                display_board(game_board)
         
-        if win_check(game_board, player1_marker) == True:
-            print("congrats Player 1!!! YOU WIN!!!")
-            break
-        else:
-            print("player1's turn is over. your turn player2")
-
+            if win_check(game_board, player1_marker) == True:
+                print("congrats Player 1!!! YOU WIN!!!")
+                break
+            else:
+                print("player1's turn is over. your turn player2")
+                turn = 'player 2'
     # Player2's turn.
+        if turn == 'player 2':
+            print(f'It is your turn {turn}')
         #check if board is full before selecting position
-        if full_board_check(game_board)  == True:
-            print("The Board is full. A TIE!!")
-            break
-        else: 
-            position = player_choice(game_board)
-            place_marker(game_board, player2_marker, position)
-            display_board(game_board)
+            if full_board_check(game_board)  == True:
+                print("The Board is full. A TIE!!")
+                break
+            else: 
+                position = player_choice(game_board)
+                place_marker(game_board, player2_marker, position)
+                display_board(game_board)
         
-        if win_check(game_board, player2_marker) == True:
-            print("congrats Player 2!!! YOU WIN!!!")
-            break
-        else:
-            print("player2's turn is over. your turn player1")
-
+            if win_check(game_board, player2_marker) == True:
+                print("congrats Player 2!!! YOU WIN!!!")
+                break
+            else:
+                print("player2's turn is over. your turn player1")
+                turn = 'player 1'
     #if not replay():
         #if win_check(game_board, player1_marker) == True or win_check(game_board, player2_marker) == True or full_board_check(game_board)  == True:
     game_on = replay()
@@ -153,4 +173,6 @@ while True:
         clear_output()
         pass
     else:
+        clear_output()
+        print('THANK YOU FOR PLAYING.')
         break
